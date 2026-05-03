@@ -20,7 +20,7 @@ def create_rag_chain(vector_db):
     )
 
     def rag_answer(question: str):
-        docs = vector_db.similarity_search(question, k=3)
+        docs = vector_db.similarity_search(question, k=5)
         context = "\n\n".join([doc.page_content for doc in docs])
         #source
         
@@ -30,7 +30,9 @@ def create_rag_chain(vector_db):
             question=question
         )
 
-        source = "\n\n".join([f"Source: {doc.metadata.get('source', 'Unknown')}" for doc in docs])
+        source_set = {doc.metadata.get("source", "Unknown") for doc in docs}
+        source = "\n".join([f"Source: {f}" for f in source_set])
+
         return llm.invoke(messages), source
     
     return rag_answer

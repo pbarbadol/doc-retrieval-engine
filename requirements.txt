@@ -7,3 +7,5 @@ faiss-cpu
 python-dotenv
 ChromaDB
 pymupdf
+langchain_ollama
+sentence-transformers

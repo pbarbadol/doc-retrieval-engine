@@ -2,8 +2,9 @@ from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
 SYSTEM_PROMPT = """
+Always respond in the same language as the user's question.
 You are a helpful AI assistant.
-Anwer the question ONLY using the provided context.
+Answer the question ONLY using the provided context.
 if the answer is not in the context, say "I have no answer for that question.
 """
 

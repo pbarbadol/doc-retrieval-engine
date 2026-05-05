@@ -20,14 +20,18 @@ def main():
 
     print("\nRAG system is ready! Ask your questions about the company policy.\n")
 
-    while True:
-        question = input("Question: ")
-        if question.lower() in ["exit", "quit"]:
-            print("Exiting RAG system. Goodbye!")
-            break
+    try:
+        while True:
+            question = input("Question: ")
+            if question.lower() in ["exit", "quit"]:
+                print("Exiting RAG system. Goodbye!")
+                break
+            
+            answer, source = rag_answer(question)
+            print(f"Answer: {answer}\n")
+            print(f"{source}\n")
+    except KeyboardInterrupt:
+        print("\nExiting RAG system. Goodbye!")
         
-        answer, source = rag_answer(question)
-        print(f"Answer: {answer}\n")
-        print(f"{source}\n")
 if __name__ == "__main__":
     main()

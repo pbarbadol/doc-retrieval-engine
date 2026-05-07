@@ -1,3 +1,4 @@
+from hybrid_retriever import HybridRetriever
 from document_loader import load_and_split_docs
 from vector_store import create_vector_store
 from rag_chain import create_rag_chain
@@ -14,9 +15,12 @@ def main():
     print(" Creating vector store...")
     vector_db = create_vector_store(chunks)
 
+    print(" Creating retriever...")
+    retriever = HybridRetriever(chunks, vector_db)
+
     # Create RAG chain
     print(" Creating RAG chain...")
-    rag_answer = create_rag_chain(vector_db)
+    rag_answer = create_rag_chain(retriever)
 
     print("\nRAG system is ready! Ask your questions about the company policy.\n")
 
